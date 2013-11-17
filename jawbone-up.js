@@ -40,13 +40,11 @@ UpClient.prototype.setToken = function(token) {
   return this;
 };
 
-UpClient.prototype.request = function(endpoint, callback) {
-  var token = this.token;
-  console.log("REQUEST",token,endpoint);
+UpClient.prototype.get = function(read_endpoint, callback) {
   request({
-    uri: this.settings.baseUrl+endpoint,
+    uri: this.settings.baseUrl+read_endpoint,
     headers: {
-      "Authorization": "Bearer "+token
+      "Authorization": "Bearer "+this.token
     }
   }, function(err, res, body) {
     callback.call(null, JSON.parse(body));

@@ -28,8 +28,8 @@ app.get("/oauth", function(req, res) {
 
 app.get("/up/*", function(req, res) {
   var token = req.query.token;
-  var endpoint = req.path.substr(4,req.path.length);
-  client.request(token,endpoint,function(json) {
+  var endpoint = req.path.substr("/up/".length,req.path.length);
+  client.setToken(token).get(endpoint,function(json) {
     res.send(json);
   });
 });
