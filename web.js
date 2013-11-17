@@ -1,6 +1,5 @@
 var express = require("express");
 var app = express();
-app.use(express.bodyParser());
 
 var JawboneUpClient = require("./jawbone-up");
 var client = new JawboneUpClient({
@@ -24,7 +23,7 @@ app.get("/oauth", function(req, res) {
     var code = req.query.code;
     client.getAccessToken(code, function(err, resp, body) {
       res.set("Content-Type","application/json");
-      res.send(body);
+      res.send(JSON.parse(body).access_token);
     });
   } else {
     throw new Error("no code");
