@@ -32,7 +32,7 @@ app.get("/oauth", function(req, res) {
 
 app.get("/basic", function(req, res) {
   var basicInfo = client.getBasicInfo(token, function(json) {
-    res.send(json);
+    res.send(token+"<h1>resp</h1>"+json);
   });
 });
 
