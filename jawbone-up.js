@@ -32,7 +32,7 @@ UpClient.prototype.getAccessToken = function(code, callback) {
   };
   console.log("GETTING TOKEN",params);
   request(tokenUrl + querystring.stringify(params), function(err, resp, body) {
-    this.accessToken = JSON.parse(body).accessToken;
+    this.accessToken = JSON.parse(body).access_token;
     callback.call(null, accessToken);
   });
 };
