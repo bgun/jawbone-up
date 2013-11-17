@@ -48,20 +48,14 @@ UpClient.prototype.getBasicInfo = function(token, callback) {
   });
 };
 
-UpClient.prototype.getExtendedInfo = function(token, callback) {
-  request({
-    uri: this.settings.baseUrl+"users/@me",
-    headers: {
-      "Authorization": "Bearer "+token
-    }
-  }, function(err, res, body) {
-    callback.call(null, JSON.parse(body));
-  });
+UpClient.prototype.setToken = function(token) {
+  this.token = token;
+  return this;
 };
 
-UpClient.prototype.getMeals = function(token, callback) {
+UpClient.prototype.request = function(token, endpoint, callback) {
   request({
-    uri: this.settings.baseUrl+"users/@me/meals",
+    uri: this.settings.baseUrl+endpoint,
     headers: {
       "Authorization": "Bearer "+token
     }

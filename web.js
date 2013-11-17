@@ -28,20 +28,13 @@ app.get("/oauth", function(req, res) {
 
 //var token = "eQBwhd5FIoOCw_yKq24sxrBJ-vN59GZrdbvXv9Dv2oegs35DJ2kLhYNzxdW1Pl60kKMwPvEBJ55RAnYEZaPxlCzIBmUtBLpsaym2RYjpp5gDwoQTw2eSTw";
 
-app.get("/basic", function(req, res) {
+app.get("/up/:endpoint", function(req, res) {
   var token = req.query.token;
-  client.getBasicInfo(token,function(json) {
+  var endpoint = req.query.endpoint;
+  client.request(token,endpoint,function(json) {
     res.send(json);
   });
 });
-
-app.get("/meals", function(req, res) {
-  var token = req.query.token;
-  client.getMeals(token,function(json) {
-    res.send(json);
-  });
-});
-
 
 
 
