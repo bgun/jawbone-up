@@ -28,7 +28,7 @@ app.get("/oauth", function(req, res) {
 
 //var token = "eQBwhd5FIoOCw_yKq24sxrBJ-vN59GZrdbvXv9Dv2oegs35DJ2kLhYNzxdW1Pl60kKMwPvEBJ55RAnYEZaPxlCzIBmUtBLpsaym2RYjpp5gDwoQTw2eSTw";
 
-app.get("/up/:endpoint", function(req, res) {
+app.get("/up/:endpoint*", function(req, res) {
   var token = req.query.token;
   var endpoint = req.param('endpoint');
   console.log("REQUESTING ENDPOINT",endpoint);
