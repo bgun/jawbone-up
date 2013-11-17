@@ -1,7 +1,7 @@
 /**
  *  node.js API consumer
  *  
- *  Ben Gundersen
+ *  Ben Gundersen, Ace Hotel codeathon 2013-Nov-16
  */
 
 var request     = require("request");
@@ -16,6 +16,7 @@ var UpClient = module.exports = function(options) {
 };
 
 UpClient.prototype.getAuthorizeUrl = function(options) {
+  // get the URL to Jawbone's OAuth login/permissions page
   var authUrl = this.settings.authUrl+"auth?";
   var params = {
     "response_type": "code",
@@ -27,6 +28,7 @@ UpClient.prototype.getAuthorizeUrl = function(options) {
 };
 
 UpClient.prototype.getAccessToken = function(code, callback) {
+  // get permanent token from auth code
   var t = this;
   var tokenUrl = t.settings.authUrl+"token?";
   var params = {
@@ -42,11 +44,13 @@ UpClient.prototype.getAccessToken = function(code, callback) {
 };
 
 UpClient.prototype.setToken = function(token) {
+  // optionally set token inline
   this.token = token;
   return this;
 };
 
 UpClient.prototype.get = function(read_endpoint, callback) {
+  // authorized passthrough for Jawbone read API endpoints
   request({
     uri: this.settings.baseUrl+read_endpoint,
     headers: {
