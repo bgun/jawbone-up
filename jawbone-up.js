@@ -31,16 +31,20 @@ UpClient.prototype.getAccessToken = function(code, callback) {
   };
   console.log("GETTING TOKEN",params);
   request(tokenUrl + querystring.stringify(params), function(err, resp, body) {
-    var token = JSON.parse(body).access_token;
-    callback.call(null, token);
+    this.accessToken = JSON.parse(body).accessToken;
+    callback.call(null, accessToken);
   });
 };
 
-UpClient.prototype.getBasicInfo = function(token, callback) {
+UpClient.prototype.setToken = function(token) {
+  this.accessToken = token;
+};
+
+UpClient.prototype.getBasicInfo = function(callback) {
   request({
     uri: this.settings.baseUrl+"users/@me",
     headers: {
-      "Authorization": "Bearer "+token
+      "Authorization": "Bearer "+this.accessToken
     }
   }, function(err, res, body) {
     callback.call(null, JSON.parse(body));
