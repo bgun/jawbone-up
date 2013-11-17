@@ -21,13 +21,19 @@ app.get('/', function(req, res) {
 app.get("/oauth", function(req, res) {
   if(req.query && req.query.code) {
     var code = req.query.code;
-    client.getAccessToken(code, function(err, resp, body) {
-      res.set("Content-Type","application/json");
-      res.send(JSON.parse(body).access_token);
+    client.getAccessToken(code, function(token) {
+      token = token;
+      res.send('<a href="/basic">Get stuff</a>');
     });
   } else {
     throw new Error("no code");
   }
+});
+
+app.get("/basic", function(req, res) {
+  var basicInfo = client.getBasicInfo(token, function(json) {
+    res.send(json);
+  });
 });
 
 var port = process.env.PORT || 5000;
