@@ -5,7 +5,7 @@ var _           = require("underscore");
 var UpClient = module.exports = function(options) {
   this.settings = _.extend({
     baseUrl: "https://jawbone.com/nudge/api/v.1.0/",
-    authUrl: "https://jawbone.com/auth/oauth/"
+    authUrl: "https://jawbone.com/auth/oauth2/"
   }, options);
   console.log("Initializing",this.settings);
 };
