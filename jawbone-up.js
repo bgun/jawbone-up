@@ -35,23 +35,13 @@ UpClient.prototype.getAccessToken = function(code, callback) {
   });
 };
 
-UpClient.prototype.getBasicInfo = function(token, callback) {
-  request({
-    uri: this.settings.baseUrl+"users/@me",
-    headers: {
-      "Authorization": "Bearer "+token
-    }
-  }, function(err, res, body) {
-    callback.call(null, JSON.parse(body));
-  });
-};
-
 UpClient.prototype.setToken = function(token) {
   this.token = token;
   return this;
 };
 
-UpClient.prototype.request = function(token, endpoint, callback) {
+UpClient.prototype.request = function(endpoint, callback) {
+  var token = this.token;
   console.log("REQUEST",token,endpoint);
   request({
     uri: this.settings.baseUrl+endpoint,

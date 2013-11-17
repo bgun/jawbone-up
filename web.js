@@ -19,14 +19,12 @@ app.get('/auth', function(req, res) {
 app.get("/oauth", function(req, res) {
   if(req.query && req.query.code) {
     client.getAccessToken(req.query.code, function(token) {
-      res.send('<a href="/basic?token='+token+'">Get stuff with token</a>');
+      res.send('<a href="/up/users/@me?token='+token+'">Get stuff with token</a>');
     });
   } else {
     throw new Error("no code");
   }
 });
-
-//var token = "eQBwhd5FIoOCw_yKq24sxrBJ-vN59GZrdbvXv9Dv2oegs35DJ2kLhYNzxdW1Pl60kKMwPvEBJ55RAnYEZaPxlCzIBmUtBLpsaym2RYjpp5gDwoQTw2eSTw";
 
 app.get("/up/*", function(req, res) {
   var token = req.query.token;
