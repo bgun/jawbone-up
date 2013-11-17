@@ -23,7 +23,7 @@ app.get("/oauth", function(req, res) {
     var code = req.query.code;
     client.getAccessToken(code, function(token) {
       token = token;
-      res.send('<a href="/basic">Get stuff</a>');
+      res.send('<a href="/basic">Get stuff with token: '+token+'</a>');
     });
   } else {
     throw new Error("no code");
