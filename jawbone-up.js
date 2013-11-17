@@ -30,18 +30,24 @@ UpClient.prototype.getAccessToken = function(code, callback) {
     "grant_type"   : "authorization_code",
     "code"         : code
   };
-  console.log("GETTING TOKEN",params);
   request(tokenUrl + querystring.stringify(params), function(err, resp, body) {
-    this.accessToken = JSON.parse(body).access_token;
-    callback.call(null, this.accessToken);
+    var token = JSON.parse(body).access_token;
+    callback.call(null, token);
   });
 };
 
-UpClient.prototype.setToken = function(token) {
-  this.accessToken = token;
+UpClient.prototype.getBasicInfo = function(token, callback) {
+  request({
+    uri: this.settings.baseUrl+"users/@me",
+    headers: {
+      "Authorization": "Bearer "+token
+    }
+  }, function(err, res, body) {
+    callback.call(null, JSON.parse(body));
+  });
 };
 
-UpClient.prototype.getBasicInfo = function(token, callback) {
+UpClient.prototype.getExtendedInfo = function(token, callback) {
   request({
     uri: this.settings.baseUrl+"users/@me",
     headers: {
