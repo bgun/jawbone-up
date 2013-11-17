@@ -41,12 +41,11 @@ UpClient.prototype.setToken = function(token) {
   this.accessToken = token;
 };
 
-UpClient.prototype.getBasicInfo = function(callback) {
-  var t = this;
+UpClient.prototype.getBasicInfo = function(token, callback) {
   request({
-    uri: t.settings.baseUrl+"users/@me",
+    uri: this.settings.baseUrl+"users/@me",
     headers: {
-      "Authorization": "Bearer "+t.accessToken
+      "Authorization": "Bearer "+token
     }
   }, function(err, res, body) {
     callback.call(null, JSON.parse(body));
