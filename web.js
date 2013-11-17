@@ -25,12 +25,12 @@ app.get("/token", function(req, res) {
   res.set("Access-Control-Allow-Origin","*");
   if(app.token) {
     res.send(JSON.stringify({
-      token: null,
-      error: "No token found"
+      token: app.token
     }));
   } else {
     res.send(JSON.stringify({
-      token: app.token
+      token: null,
+      error: "No token found"
     }));
   }
 });
