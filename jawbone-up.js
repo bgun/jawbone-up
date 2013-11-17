@@ -7,7 +7,6 @@ var UpClient = module.exports = function(options) {
     baseUrl: "https://jawbone.com/nudge/api/v.1.0/",
     authUrl: "https://jawbone.com/auth/oauth2/"
   }, options);
-  console.log("Initializing",this.settings);
 };
 
 UpClient.prototype.getAuthorizeUrl = function(options) {
@@ -18,7 +17,6 @@ UpClient.prototype.getAuthorizeUrl = function(options) {
     "scope"        : options.scope,
     "redirect_uri" : options.redirectURI
   };
-  console.log("AUTHORIZING",params);
   return authUrl + querystring.stringify(params);
 };
 
@@ -54,6 +52,7 @@ UpClient.prototype.setToken = function(token) {
 };
 
 UpClient.prototype.request = function(token, endpoint, callback) {
+  console.log("REQUEST",token,endpoint);
   request({
     uri: this.settings.baseUrl+endpoint,
     headers: {

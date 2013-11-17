@@ -26,13 +26,11 @@ app.get("/oauth", function(req, res) {
   }
 });
 
-var token = "eQBwhd5FIoOCw_yKq24sxrBJ-vN59GZrdbvXv9Dv2oegs35DJ2kLhYNzxdW1Pl60kKMwPvEBJ55RAnYEZaPxlCzIBmUtBLpsaym2RYjpp5gDwoQTw2eSTw";
+//var token = "eQBwhd5FIoOCw_yKq24sxrBJ-vN59GZrdbvXv9Dv2oegs35DJ2kLhYNzxdW1Pl60kKMwPvEBJ55RAnYEZaPxlCzIBmUtBLpsaym2RYjpp5gDwoQTw2eSTw";
 
 app.get("/up/*", function(req, res) {
-  //var token = req.query.token;
-  var endpoint = req.param('endpoint');
-  console.log("PATH",req.path);
-  console.log("REQUESTING ENDPOINT",endpoint);
+  var token = req.query.token;
+  var endpoint = req.path.substr(4,req.path.length);
   client.request(token,endpoint,function(json) {
     res.send(json);
   });
