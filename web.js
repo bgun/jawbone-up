@@ -23,9 +23,16 @@ app.get('/auth/url', function(req, res) {
 app.get("/token", function(req, res) {
   res.set("Content-Type","application/json");
   res.set("Access-Control-Allow-Origin","*");
-  res.send(JSON.stringify({
-    token: app.token
-  }));
+  if(app.token) {
+    res.send(JSON.stringify({
+      token: null,
+      error: "No token found"
+    }));
+  } else {
+    res.send(JSON.stringify({
+      token: app.token
+    }));
+  }
 });
 
 app.get("/oauth", function(req, res) {
