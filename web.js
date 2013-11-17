@@ -35,5 +35,13 @@ app.get("/basic", function(req, res) {
   });
 });
 
+app.get("/meals", function(req, res) {
+});
+
+
+
+
+// start listening
+
 var port = process.env.PORT || 5000;
 app.listen(port);
