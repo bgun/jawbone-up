@@ -18,6 +18,7 @@ UpClient.prototype.getAuthorizeUrl = function(options) {
     "scope"        : options.scope,
     "redirect_uri" : options.redirectURI
   };
+  console.log("AUTHORIZING",params);
   return authUrl + querystring.stringify(params);
 };
 
