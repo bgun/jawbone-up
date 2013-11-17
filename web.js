@@ -19,9 +19,17 @@ app.get('/auth/url', function(req, res) {
   }));
 });
 
-app.get("/auth/token", function(req, res) {
+app.get("/token", function(req, res) {
+  res.set("Content-Type","application/json");
+  res.send(JSON.stringify({
+    token: app.token
+  }));
+});
+
+app.get("/oauth", function(req, res) {
   if(req.query && req.query.code) {
     client.getAccessToken(req.query.code, function(token) {
+      app.token = token;
       res.send(JSON.stringify({
         token: token
       }));
