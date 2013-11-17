@@ -57,3 +57,14 @@ UpClient.prototype.getExtendedInfo = function(token, callback) {
     callback.call(null, JSON.parse(body));
   });
 };
+
+UpClient.prototype.getExtendedInfo = function(token, callback) {
+  request({
+    uri: this.settings.baseUrl+"users/@me",
+    headers: {
+      "Authorization": "Bearer "+token
+    }
+  }, function(err, res, body) {
+    callback.call(null, JSON.parse(body));
+  });
+};

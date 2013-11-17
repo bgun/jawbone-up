@@ -26,10 +26,10 @@ app.get("/oauth", function(req, res) {
   }
 });
 
-var token = "eQBwhd5FIoOCw_yKq24sxrBJ-vN59GZrdbvXv9Dv2oegs35DJ2kLhYNzxdW1Pl60kKMwPvEBJ55RAnYEZaPxlCzIBmUtBLpsaym2RYjpp5gDwoQTw2eSTw";
+//var token = "eQBwhd5FIoOCw_yKq24sxrBJ-vN59GZrdbvXv9Dv2oegs35DJ2kLhYNzxdW1Pl60kKMwPvEBJ55RAnYEZaPxlCzIBmUtBLpsaym2RYjpp5gDwoQTw2eSTw";
 
 app.get("/basic", function(req, res) {
-  //var token = req.query.token;
+  var token = req.query.token;
   client.getBasicInfo(token,function(json) {
     res.send(json);
   });
