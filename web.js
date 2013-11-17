@@ -50,6 +50,8 @@ app.get("/up/*", function(req, res) {
   var token = req.query.token;
   var endpoint = req.path.substr("/up/".length,req.path.length);
   client.setToken(token).get(endpoint,function(json) {
+    res.set("Content-Type","application/json");
+    res.set("Access-Control-Allow-Origin","*");
     res.send(json);
   });
 });
