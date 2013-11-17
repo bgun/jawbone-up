@@ -14,6 +14,7 @@ app.get('/auth/url', function(req, res) {
     redirectURI: "https://jawbone-up-client.herokuapp.com/oauth"
   });
   res.set("Content-Type","application/json");
+  res.set("Access-Control-Allow-Origin","*");
   res.send(JSON.stringify({
     url: oAuthUrl
   }));
@@ -21,6 +22,7 @@ app.get('/auth/url', function(req, res) {
 
 app.get("/token", function(req, res) {
   res.set("Content-Type","application/json");
+  res.set("Access-Control-Allow-Origin","*");
   res.send(JSON.stringify({
     token: app.token
   }));
