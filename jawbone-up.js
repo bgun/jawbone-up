@@ -4,13 +4,14 @@ var _           = require("underscore");
 
 var UpClient = module.exports = function(options) {
   this.settings = _.extend({
-    baseUrl: "https://jawbone.com/nudge/api/v.1.0/"
+    baseUrl: "https://jawbone.com/nudge/api/v.1.0/",
+    authUrl: "https://jawbone.com/auth/oauth/"
   }, options);
   console.log("Initializing",this.settings);
 };
 
 UpClient.prototype.getAuthorizeUrl = function(options) {
-  var authUrl = "https://jawbone.com/auth/oauth2/auth?";
+  var authUrl = this.settings.authUrl+"auth?";
   var params = {
     "response_type": "code",
     "client_id"    : this.settings.clientId,
@@ -22,7 +23,7 @@ UpClient.prototype.getAuthorizeUrl = function(options) {
 
 UpClient.prototype.getAccessToken = function(code, callback) {
   var t = this;
-  var tokenUrl = "https://jawbone.com/auth/oauth2/token?";
+  var tokenUrl = t.settings.authUrl+"token?";
   var params = {
     "client_id"    : t.settings.clientId,
     "client_secret": t.settings.appSecret,
