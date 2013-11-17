@@ -36,6 +36,10 @@ app.get("/basic", function(req, res) {
 });
 
 app.get("/meals", function(req, res) {
+  var token = req.query.token;
+  client.getMeals(token,function(json) {
+    res.send(json);
+  });
 });
 
 

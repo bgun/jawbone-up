@@ -58,7 +58,7 @@ UpClient.prototype.getExtendedInfo = function(token, callback) {
   });
 };
 
-UpClient.prototype.getExtendedInfo = function(token, callback) {
+UpClient.prototype.getMeals = function(token, callback) {
   request({
     uri: this.settings.baseUrl+"users/@me/meals",
     headers: {
