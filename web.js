@@ -30,7 +30,7 @@ app.get("/oauth", function(req, res) {
 
 app.get("/up/:endpoint", function(req, res) {
   var token = req.query.token;
-  var endpoint = req.param.endpoint;
+  var endpoint = req.param('endpoint');
   console.log("REQUESTING ENDPOINT",endpoint);
   client.request(token,endpoint,function(json) {
     res.send(json);
