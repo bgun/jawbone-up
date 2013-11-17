@@ -1,3 +1,9 @@
+/**
+ *  node.js API consumer
+ *  
+ *  Ben Gundersen
+ */
+
 var request     = require("request");
 var querystring = require("querystring");
 var _           = require("underscore");
