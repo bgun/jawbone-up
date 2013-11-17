@@ -26,5 +26,10 @@ UpClient.prototype.getAccessToken = function(code, callback) {
     "grant_type": "authorization_code",
     "code"      : code
   };
+  console.log("GETTING TOKEN",params);
   request(tokenUrl + querystring.stringify(params), callback);
+};
+
+UpClient.prototype.setAccessToken = function(token) {
+  this.token = token;
 };
