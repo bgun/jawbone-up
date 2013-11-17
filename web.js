@@ -23,15 +23,16 @@ app.get("/oauth", function(req, res) {
     var code = req.query.code;
     client.getAccessToken(code, function(token) {
       token = token;
-      res.send('<a href="/basic">Get stuff with token: '+token+'</a>');
+      res.send('<a href="/basic?token='+token+'">Get stuff with token</a>');
     });
   } else {
     throw new Error("no code");
   }
 });
 
-app.get("/basic", function(req, res) {
-  var basicInfo = client.getBasicInfo(function(json) {
+app.get("/basic/:token", function(req, res) {
+  var token = req.param("token");
+  var basicInfo = client.getBasicInfo(token,function(json) {
     res.send(json);
   });
 });
