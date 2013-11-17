@@ -8,18 +8,23 @@ var client = new JawboneUpClient({
   appSecret: 'fc6b15312b6da7038c9b4b2f7215f1ecfe7a8add'
 });
 
-app.get('/auth', function(req, res) {
+app.get('/auth/url', function(req, res) {
   var oAuthUrl = client.getAuthorizeUrl({
     scope: ['basic_read','extended_read','location_read','friends_read','cardiac_read','meal_read'].join(' '),
     redirectURI: "https://jawbone-up-client.herokuapp.com/oauth"
   });
-  res.send('<body><a href="'+oAuthUrl+'">Authorize</a></body>');
+  res.set("Content-Type","application/json");
+  res.send(JSON.stringify({
+    url: oAuthUrl
+  }));
 });
 
-app.get("/oauth", function(req, res) {
+app.get("/auth/token", function(req, res) {
   if(req.query && req.query.code) {
     client.getAccessToken(req.query.code, function(token) {
-      res.send('<a href="/up/users/@me?token='+token+'">Get stuff with token</a>');
+      res.send(JSON.stringify({
+        token: token
+      }));
     });
   } else {
     throw new Error("no code");
