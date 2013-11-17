@@ -30,9 +30,7 @@ app.get("/oauth", function(req, res) {
   if(req.query && req.query.code) {
     client.getAccessToken(req.query.code, function(token) {
       app.token = token;
-      res.send(JSON.stringify({
-        token: token
-      }));
+      res.send("Connection successful. Please close this window.");
     });
   } else {
     throw new Error("no code");
