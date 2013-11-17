@@ -24,7 +24,7 @@ app.get("/oauth", function(req, res) {
     var code = req.query.code;
     client.getAccessToken(code, function(err, resp, body) {
       res.set("Content-Type","application/json");
-      res.send(body.access_token);
+      res.send(body);
     });
   } else {
     throw new Error("no code");
