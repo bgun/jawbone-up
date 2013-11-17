@@ -19,7 +19,7 @@ UpClient.prototype.getAuthorizeUrl = function(options) {
 };
 
 UpClient.prototype.getAccessToken = function(code, callback) {
-  var tokenUrl = "https://jawbone.com/auth/oauth2/token";
+  var tokenUrl = "https://jawbone.com/auth/oauth2/token?";
   var params = {
     "client_id" : this.settings.clientId,
     "app_secret": this.settings.appSecret,
