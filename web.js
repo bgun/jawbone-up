@@ -10,7 +10,7 @@ var client = new JawboneUpClient({
 
 app.get('/auth/url', function(req, res) {
   var oAuthUrl = client.getAuthorizeUrl({
-    scope: ['basic_read','extended_read','location_read','friends_read','cardiac_read','meal_read'].join(' '),
+    scope: ['basic_read','extended_read','location_read','friends_read','cardiac_read','meal_read','move_read','mood_read'].join(' '),
     redirectURI: "https://jawbone-up-client.herokuapp.com/oauth"
   });
   res.set("Content-Type","application/json");
